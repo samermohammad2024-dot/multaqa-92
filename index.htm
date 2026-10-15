@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#659d2b">
-    <title>ملتقى الطالبات - منصة تعليمية</title>
+    <meta name="theme-color" content="#4a0e17">
+    <title>منصة ملتقى | الفاخرة</title>
     <!-- استيراد مكتبات Firebase عبر CDN -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // إعدادات فايربيس الخاصة بكِ (يمكنك تعديلها لاحقاً إذا أردتِ ربطها بمشروعك الخاص)
         const firebaseConfig = {
             apiKey: "AIzaSyD-Placeholder-Key-Change-Me",
             authDomain: "multaqa-92.firebaseapp.com",
@@ -32,145 +31,389 @@
         window.onSnapshot = onSnapshot;
     </script>
     <style>
-        :root{--primary:#791d35;--wine2:#a51c4d;--bg:#99090d;--panel:#14141b;--panel2:#1c1b24;--text:#f7f2f4;--muted:#b8aeb5;--line:#30252d;--radius:20px;--box-sizing:border-box}
-        body{margin:0;background:radial-gradient(ellipse at top right,#2a0b19 0%,var(--bg) 42%);color:var(--text);font-family:system-ui,-apple-system,sans-serif;min-height:100vh;display:flex;flex-direction:column}
-        header{background:linear-gradient(135deg,#510923,#8b1640);padding:25px 18px 22px;border-bottom:1px solid #a53b60;box-shadow:0 4px 12px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:space-between;gap:14px}
-        .brand{display:flex;align-items:center;gap:13px}
-        .logo{width:54px;height:54px;border-radius:18px;background:#FFFFF5;color:var(--wine2);font-weight:900;font-size:24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 7px 0 0 #fde4c4;margin:7px 0 0 13px}
-        h1{margin:0;font-size:23px;font-weight:900;line-height:1.9;color:var(--muted)}
-        .tag{font-size:11px;color:#fdfd0b;background:#ffffff12;padding:0px 13px;border-radius:900px;display:inline-block;white-space:nowrap}
-        main{max-width:1100px;margin:24px auto;padding:0 16px 40px;flex:1;width:100%}
-        .hero{background:linear-gradient(135deg,#171219,#17151a);border-radius:24px;border:1px solid #4c2636;padding:24px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;gap:19px;flex-wrap:wrap}
-        .hero h2{margin:0 0 5px;font-size:23px;color:var(--muted);line-height:1.9}
-        .hero p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
-        .stats{display:flex;align-items:center;gap:13px}
-        .stat{background:#ffffff12;padding:8px 12px;border-radius:12px;font-size:12px}
-        .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
-        .section-head h2{margin:0;font-size:20px}
-        .subjects{display:flex;gap:9px;overflow-x:auto;padding-bottom:10px}
-        .subject{cursor:pointer;text-align:right;border:1px solid var(--line);background:var(--panel);color:var(--text);padding:10px 14px;border-radius:12px;font-size:12px;white-space:nowrap;transition:0.2s}
-        .subject.active{background:var(--wine2);border-color:#b82b5b}
-        .subject strong{display:block;font-size:15px}
-        .subject small{display:block;color:var(--muted);font-size:11px}
-        .layout{display:grid;grid-template-columns:1fr 310px;gap:18px}
-        @media(max-width:768px){.layout{grid-template-columns:1fr}}
-        .posts{display:grid;gap:13px}
-        .post{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;overflow-wrap:anywhere}
-        aside{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:19px;position:sticky;top:12px}
-        aside h2{font-size:16px;margin:0 0 7px}
-        input,select,textarea{width:100%;background:#0d0c11;border:1px solid #100%;border-radius:12px;padding:13px 15px;margin-top:14px;background:linear-gradient(135deg,#a51c4d,#659d2b);color:var(--text);font-size:13px;line-height:1.8;margin-bottom:12px}
-        .btn{text-align:center;color:#E5747D;border-radius:12px;padding:15px 18px;background:linear-gradient(135deg,#a51c4d,#659d2b);font-size:13px;width:100%;border:0;cursor:pointer;font-weight:bold}
-        footer{text-align:center;color:var(--muted);font-size:11px;padding:35px 18px}
+        :root {
+            --bg-deep: #050505;
+            --bg-card: #120a0d;
+            --bg-card-hover: #1c0f14;
+            --burgundy: #6b1028;
+            --burgundy-light: #8e1837;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-main: #f5f0f2;
+            --text-muted: #b0a2a6;
+            --border-burgundy: #38121b;
+            --radius: 16px;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--bg-deep);
+            background-image: radial-gradient(circle at top center, #1f050b 0%, var(--bg-deep) 70%);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, #100306, var(--burgundy));
+            border-bottom: 2px solid var(--gold);
+            padding: 24px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--gold), #aa771c);
+            color: #000;
+            font-weight: 900;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+        }
+
+        .tag {
+            font-size: 12px;
+            color: var(--gold-light);
+            background: rgba(212, 175, 55, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            flex: 1;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .hero {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-burgundy);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; width: 4px; height: 100%;
+            background: linear-gradient(to bottom, var(--gold), var(--burgundy));
+        }
+
+        .hero h2 {
+            margin: 0 0 10px;
+            font-size: 26px;
+            color: var(--gold-light);
+        }
+
+        .hero p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: var(--gold-light);
+            margin-bottom: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .subjects {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        .subject {
+            cursor: pointer;
+            text-align: right;
+            border: 1px solid var(--border-burgundy);
+            background: var(--bg-card);
+            color: var(--text-main);
+            padding: 14px 20px;
+            border-radius: 14px;
+            font-size: 13px;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .subject:hover {
+            border-color: var(--burgundy-light);
+            background: var(--bg-card-hover);
+        }
+
+        .subject.active {
+            background: linear-gradient(135deg, var(--burgundy), var(--burgundy-light));
+            border-color: var(--gold);
+            box-shadow: 0 4px 15px rgba(107, 16, 40, 0.6);
+        }
+
+        .subject strong {
+            display: block;
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .subject small {
+            color: var(--text-muted);
+            font-size: 11px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 25px;
+        }
+
+        @media(max-width: 900px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .posts {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .post {
+            background: var(--bg-card);
+            border: 1px solid var(--border-burgundy);
+            border-radius: var(--radius);
+            padding: 22px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            transition: transform 0.2s;
+        }
+
+        .post:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .post-badge {
+            font-size: 11px;
+            background: rgba(107, 16, 40, 0.4);
+            color: var(--gold-light);
+            padding: 4px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-burgundy);
+            display: inline-block;
+        }
+
+        aside {
+            background: var(--bg-card);
+            border: 1px solid var(--border-burgundy);
+            border-radius: var(--radius);
+            padding: 24px;
+            height: fit-content;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            position: sticky;
+            top: 20px;
+        }
+
+        aside h2 {
+            font-size: 18px;
+            margin: 0 0 16px;
+            color: var(--gold-light);
+            border-bottom: 1px solid var(--border-burgundy);
+            padding-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            margin-top: 14px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            background: #080305;
+            border: 1px solid var(--border-burgundy);
+            border-radius: 12px;
+            padding: 12px 16px;
+            color: var(--text-main);
+            font-size: 13px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--burgundy), var(--burgundy-light));
+            color: #fff;
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 14px;
+            width: 100%;
+            border: 1px solid var(--gold);
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(107, 16, 40, 0.5);
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 12px;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-burgundy);
+            margin-top: 40px;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="brand">
-            <div class="logo">✨</div>
+            <div class="logo">💎</div>
             <div>
-                <h1>ملتقى الطالبات</h1>
-                <p class="tag">منصة تعليمية - مساحة للمذاكرة وتبادل الملخصات</p>
+                <h1>منصة ملتقى العالمية</h1>
+                <div class="tag">النسخة الفاخرة المعتمدة عالمياً</div>
             </div>
         </div>
     </header>
 
     <main>
         <section class="hero">
-            <div>
-                <h2>أهلاً بكِ في ملتقى الطالبات 🌙</h2>
-                <p>مساحة مرئية للمذاكرة وتبادل الملخصات والأسئلة والفوائد</p>
-            </div>
+            <h2>مرحباً بكِ في البوابة الأكاديمية العالمية 🌟</h2>
+            <p>مساحة رقمية متكاملة لتبادل المعرفة، الملخصات، والمناقشات العلمية العالمية بشكل حي وفوري.</p>
         </section>
 
-        <div class="section-head">
-            <h2>المواد الدراسية</h2>
-        </div>
-
+        <div class="section-title">📚 المواد الدراسية المعتمدة</div>
         <div class="subjects">
-            <button class="subject active" data-subject="الكل"><strong>الكل</strong><small>جميع المشاركات</small></button>
-            <button class="subject" data-subject="اللغة العربية"><strong>اللغة العربية</strong><small>النحو والصرف</small></button>
-            <button class="subject" data-subject="اللغة الإنجليزية"><strong>اللغة الإنجليزية</strong><small>Grammar & Vocabulary</small></button>
-            <button class="subject" data-subject="الحاسوب"><strong>الحاسوب</strong><small>برمجة أساسيات</small></button>
-            <button class="subject" data-subject="القرآن الكريم"><strong>القرآن الكريم</strong><small>تفسير حفظ</small></button>
+            <button class="subject active" data-subject="الكل"><strong>جميع المواد</strong><small>استعراض كافة المنشورات</small></button>
+            <button class="subject" data-subject="اللغة العربية"><strong>اللغة العربية</strong><small>النحو، البلاغة والأدب</small></button>
+            <button class="subject" data-subject="اللغة الإنجليزية"><strong>اللغة الإنجليزية</strong><small>Grammar & Literature</small></button>
+            <button class="subject" data-subject="الحاسوب"><strong>الحاسوب وتقنية المعلومات</strong><small>Programming & Systems</small></button>
+            <button class="subject" data-subject="القرآن الكريم"><strong>القرآن الكريم</strong><small>التفسير والعلوم الشرعية</small></button>
         </div>
 
-        <div class="section-head">
-            <h2 id="feedTitle">أحدث المنشورات</h2>
-        </div>
+        <div class="section-title" id="feedTitle">🌐 أحدث المنشورات العالمية</div>
 
         <div class="layout">
             <section class="posts" id="posts">
-                <!-- ستظهر المنشورات هنا تلقائياً من قاعدة البيانات -->
+                <!-- ستظهر المشاركات هنا مباشرة من السحابة -->
             </section>
             
             <aside>
-                <h2>أضيفي منشوراً جديداً ✍️</h2>
+                <h2>إضافة مشاركة جديدة ✍️</h2>
                 <form id="postForm">
-                    <label for="author">اسم الطالبة (اختياري)</label>
-                    <input id="author" maxlength="40" placeholder="مثال: طالبة مجتهدة">
+                    <label for="author">اسم الكاتبة (اختياري)</label>
+                    <input id="author" maxlength="40" placeholder="مثال: د. سارة">
                     
                     <label for="subject">المادة الدراسية</label>
                     <select id="subject" required>
                         <option value="اللغة العربية">اللغة العربية</option>
                         <option value="اللغة الإنجليزية">اللغة الإنجليزية</option>
-                        <option value="الحاسوب">الحاسوب</option>
+                        <option value="الحاسوب">الحاسوب وتقنية المعلومات</option>
                         <option value="القرآن الكريم">القرآن الكريم</option>
                     </select>
 
-                    <label for="title">عنوان المنشور</label>
-                    <input id="title" required maxlength="100" placeholder="سؤال أو ملخص درس اليوم...">
+                    <label for="title">عنوان المشاركة</label>
+                    <input id="title" required maxlength="100" placeholder="عنوان الملخص أو السؤال...">
 
-                    <label for="content">محتوى المنشور</label>
-                    <textarea id="content" required rows="4" maxlength="5000" placeholder="اكتبي مشاركتك هنا..."></textarea>
+                    <label for="content">المحتوى الأكاديمي</label>
+                    <textarea id="content" required rows="4" maxlength="5000" placeholder="اكتبي تفاصيل المشاركة أو الملخص بوضوح..."></textarea>
 
-                    <button class="btn" type="submit">نشر المشاركة</button>
+                    <button class="btn" type="submit">نشر المشاركة عالمياً</button>
                 </form>
             </aside>
         </div>
     </main>
 
     <footer>
-        <p>ملتقى الطالبات © <span id="year">2026</span> - العلم يرفع بيوتاً لا عماد لها</p>
+        <p>جميع الحقوق محفوظة - منصة ملتقى العالمية © <span id="year">2026</span></p>
     </footer>
 
     <script type="module">
         let activeSubject = "الكل";
 
-        // دالة لجلب وعرض المنشورات من فايربيس
         function loadPosts() {
             const postsContainer = document.getElementById("posts");
-            
-            // مراقبة التغييرات في قاعدة البيانات مباشرة (Real-time)
             const q = window.query(window.collection(window.db, "posts"), window.orderBy("date", "desc"));
+            
             window.onSnapshot(q, (snapshot) => {
                 let posts = [];
                 snapshot.forEach((doc) => {
                     posts.push({ id: doc.id, ...doc.data() });
                 });
 
-                // تصفية حسب المادة المحددة
                 let filtered = posts;
                 if (activeSubject !== "الكل") {
                     filtered = posts.filter(p => p.subject === activeSubject);
                 }
 
                 if (filtered.length === 0) {
-                    postsContainer.innerHTML = `<div class="post"><p style="text-align:center; color:var(--muted);">لا توجد منشورات في هذه المادة بعد.كوني أول من تنشر! 🌸</p></div>`;
+                    postsContainer.innerHTML = `<div class="post" style="text-align:center; color:var(--text-muted); padding:30px;">لا توجد منشورات في هذه القسم حالياً. كوني أول من يشارك! ✨</div>`;
                     return;
                 }
 
                 postsContainer.innerHTML = filtered.map(p => `
                     <article class="post">
-                        <span style="font-size:11px; background:#ffffff12; padding:3px 8px; border-radius:6px; color:#fdfd0b;">${p.subject}</span>
-                        <h3 style="margin:10px 0 5px; font-size:16px;">${p.title}</h3>
-                        <p style="margin:0 0 10px; font-size:14px; white-space:pre-wrap;">${p.content}</p>
-                        <small style="color:var(--muted);">بواسطة: ${p.author || "فاعل خير"} | ${new Date(p.date).toLocaleString('ar-SA')}</small>
+                        <span class="post-badge">${p.subject}</span>
+                        <h3 style="margin: 12px 0 8px; font-size: 17px; color: var(--gold-light);">${p.title}</h3>
+                        <p style="margin: 0 0 14px; font-size: 14px; line-height: 1.7; white-space: pre-wrap; color: var(--text-main);">${p.content}</p>
+                        <div style="font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--border-burgundy); padding-top: 8px; display: flex; justify-content: space-between;">
+                            <span>بواسطة: ${p.author || "باحثة أكاديمية"}</span>
+                            <span>${new Date(p.date).toLocaleString('ar-SA')}</span>
+                        </div>
                     </article>
                 `).join('');
             });
         }
 
-        // إرسال منشور جديد إلى فايربيس
         document.getElementById("postForm").addEventListener("submit", async (e) => {
             e.preventDefault();
             const author = document.getElementById("author").value.trim();
@@ -182,32 +425,30 @@
 
             try {
                 await window.addDoc(window.collection(window.db, "posts"), {
-                    author: author || "طالبة مجهولة",
+                    author: author || "باحثة أكاديمية",
                     subject,
                     title,
                     content,
                     date: Date.now()
                 });
                 document.getElementById("postForm").reset();
-                alert("تم نشر المشاركة بنجاح وتحديثها للجميع! 🎉");
+                alert("تم نشر المشاركة بنجاح وعرضها على مستوى العالم! 🌍✨");
             } catch (error) {
                 console.error("خطأ في النشر: ", error);
                 alert("حدث خطأ أثناء النشر، تأكدي من اتصال الإنترنت.");
             }
         });
 
-        // التعامل مع أزرار تصفية المواد
         document.querySelectorAll(".subject").forEach(btn => {
             btn.addEventListener("click", () => {
                 document.querySelectorAll(".subject").forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
                 activeSubject = btn.dataset.subject;
-                document.getElementById("feedTitle").textContent = activeSubject === "الكل" ? "أحدث المنشورات" : `منشورات ${activeSubject}`;
+                document.getElementById("feedTitle").textContent = activeSubject === "الكل" ? "🌐 أحدث المنشورات العالمية" : `🌐 منشورات قسم ${activeSubject}`;
                 loadPosts();
             });
         });
 
-        // تشغيل الجلب عند تحميل الصفحة
         setTimeout(loadPosts, 1000);
     </script>
 </body>
