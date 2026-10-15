@@ -10,13 +10,15 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+        // إعدادات فايربيس الخاصة بمشروعك الحقيقي
         const firebaseConfig = {
-            apiKey: "AIzaSyD-Placeholder-Key-Change-Me",
-            authDomain: "multaqa-92.firebaseapp.com",
-            projectId: "multaqa-92",
-            storageBucket: "multaqa-92.appspot.com",
-            messagingSenderId: "123456789",
-            appId: "1:123456789:web:abcdef"
+            apiKey: "AIzaSyAjmLRuZBQ_Ac_C8fEN8v2l",
+            authDomain: "multaqa-92926.firebaseapp.com",
+            projectId: "multaqa-92926",
+            storageBucket: "multaqa-92926.appspot.com",
+            messagingSenderId: "470230700055",
+            appId: "1:470230700055:web:fc67f3ae58",
+            measurementId: "G-1CRYG38S1Y"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -224,11 +226,6 @@
             border-radius: var(--radius);
             padding: 22px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-            transition: transform 0.2s;
-        }
-
-        .post:hover {
-            border-color: rgba(212, 175, 55, 0.3);
         }
 
         .post-badge {
@@ -277,7 +274,6 @@
             color: var(--text-main);
             font-size: 13px;
             box-sizing: border-box;
-            transition: border-color 0.3s;
         }
 
         input:focus, select:focus, textarea:focus {
@@ -297,11 +293,6 @@
             font-weight: bold;
             margin-top: 20px;
             box-shadow: 0 4px 15px rgba(107, 16, 40, 0.5);
-            transition: opacity 0.2s;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
         }
 
         footer {
@@ -328,15 +319,15 @@
     <main>
         <section class="hero">
             <h2>مرحباً بكِ في البوابة الأكاديمية العالمية 🌟</h2>
-            <p>مساحة رقمية متكاملة لتبادل المعرفة، الملخصات، والمناقشات العلمية العالمية بشكل حي وفوري.</p>
+            <p>مساحة رقمية متكاملة لتبادل المعرفة، الملخصات، والمناقشات العلمية بشكل حي وفوري بين الجميع.</p>
         </section>
 
-        <div class="section-title">📚 المواد الدراسية المعتمدة</div>
+        <div class="section-title">📚 المواد الدراسية الأربع المعتمدة</div>
         <div class="subjects">
             <button class="subject active" data-subject="الكل"><strong>جميع المواد</strong><small>استعراض كافة المنشورات</small></button>
             <button class="subject" data-subject="اللغة العربية"><strong>اللغة العربية</strong><small>النحو، البلاغة والأدب</small></button>
             <button class="subject" data-subject="اللغة الإنجليزية"><strong>اللغة الإنجليزية</strong><small>Grammar & Literature</small></button>
-            <button class="subject" data-subject="الحاسوب"><strong>الحاسوب وتقنية المعلومات</strong><small>Programming & Systems</small></button>
+            <button class="subject" data-subject="الحاسوب"><strong>الحاسوب</strong><small>Programming & Systems</small></button>
             <button class="subject" data-subject="القرآن الكريم"><strong>القرآن الكريم</strong><small>التفسير والعلوم الشرعية</small></button>
         </div>
 
@@ -351,13 +342,13 @@
                 <h2>إضافة مشاركة جديدة ✍️</h2>
                 <form id="postForm">
                     <label for="author">اسم الكاتبة (اختياري)</label>
-                    <input id="author" maxlength="40" placeholder="مثال: د. سارة">
+                    <input id="author" maxlength="40" placeholder="مثال: طالبة مجتهدة">
                     
                     <label for="subject">المادة الدراسية</label>
                     <select id="subject" required>
                         <option value="اللغة العربية">اللغة العربية</option>
                         <option value="اللغة الإنجليزية">اللغة الإنجليزية</option>
-                        <option value="الحاسوب">الحاسوب وتقنية المعلومات</option>
+                        <option value="الحاسوب">الحاسوب</option>
                         <option value="القرآن الكريم">القرآن الكريم</option>
                     </select>
 
@@ -396,7 +387,7 @@
                 }
 
                 if (filtered.length === 0) {
-                    postsContainer.innerHTML = `<div class="post" style="text-align:center; color:var(--text-muted); padding:30px;">لا توجد منشورات في هذه القسم حالياً. كوني أول من يشارك! ✨</div>`;
+                    postsContainer.innerHTML = `<div class="post" style="text-align:center; color:var(--text-muted); padding:30px;">لا توجد منشورات في هذا القسم حالياً. كوني أول من يشارك! ✨</div>`;
                     return;
                 }
 
@@ -453,4 +444,3 @@
     </script>
 </body>
 </html>
-
